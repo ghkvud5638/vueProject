@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head>
+	<meta charset="UTF-8">
+	<title>MODIFY</title>
+	<script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+	<script type="text/javascript" th:src="@{/js/board.js}"></script>
+</head>
+<body class="container">
+
+	<div class="jumbotron">
+		<h2>MODIFY</h2>
+		<a href="/"><button class="btn btn-default pull-right">메인</button></a>
+	</div>
+
+	<input type="hidden" id="hiddenSeq" th:value="${detail.seq}"/>
+	<table class="table">
+		<tr>
+			<td class="info">글 번호</td>
+			<td colspan="4" id="seq" th:text="${detail.seq}"></td>
+		</tr>
+		<tr>
+			<td class="info">아이디</td>
+			<td th:text="${detail.writer.email}"></td>
+			<td class="info">닉네임</td>
+			<td th:text="${detail.writer.name}"></td>
+		</tr>
+
+		<tr>
+			<td class="info">조회수</td>
+			<td th:text="${detail.boardHits }"></td>
+			<td class="info">작성일</td>
+			<td th:text="${detail.insDate}"></td>
+		</tr>
+		<tr>
+			<td class="info">제목</td>
+			<td colspan="3">
+				<input type="text" id="boardTitle" th:value="${detail.boardTitle }" />
+			</td>
+		</tr>
+
+		<tr>
+			<td class="info" colspan="4">본문</td>
+		</tr>
+
+		<tr>
+			<td colspan="4" id="content">
+				<input type="text" id="boardContent" th:value="${detail.boardContent }" />
+			</td>
+		</tr>
+	</table>
+
+	<div class="text-center">
+		<button class="btn btn-primary" id="btnModify">수정하기</button>
+		<input type="reset" id="cancel" class="btn btn-danger" value="초기회">
+	</div>
+
+</body>
+
+</html>

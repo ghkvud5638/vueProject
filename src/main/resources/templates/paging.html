@@ -1,0 +1,32 @@
+<nav style="text-align: center;">
+	<ul class="pagination" th:with="start=${T(Math).floor(paging.number/10)*10 + 1},
+                    last=(${start + 9 < paging.totalPages ? start + 9 : paging.totalPages})">
+		<li>
+			<a th:href="@{/board(page=1)}" aria-label="First">
+				<span aria-hidden="true">First</span>
+			</a>
+		</li>
+
+		<li th:class="${paging.first} ? 'disabled'">
+			<a th:href="${paging.first} ? '#' :@{/board(page=${paging.number})}" aria-label="Previous">
+				<span aria-hidden="true">&lt;</span>
+			</a>
+		</li>
+
+		<li th:each="page: ${#numbers.sequence(start, last)}" th:class="${page == paging.number + 1} ? 'active'">
+            <a th:text="${page}" th:href="@{/board(searchText=${searchText}, page=${page})}"></a>
+        </li>
+
+        <li th:class="${paging.last} ? 'disabled'">
+            <a th:href="${paging.last} ? '#' : @{/board(page=${paging.number + 2})}" aria-label="Next">
+                <span aria-hidden="true">&gt;</span>
+            </a>
+        </li>
+
+        <li>
+            <a th:href="@{/board(page=${paging.totalPages})}" aria-label="Last">
+                <span aria-hidden="true">Last</span>
+            </a>
+        </li>
+    </ul>
+</nav>

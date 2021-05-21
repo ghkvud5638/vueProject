@@ -1,0 +1,18 @@
+		<div th:each="c: ${commentList}">
+			<div th:id="delete+${c.commentId}">
+				<input type="hidden" id="hiddenCommentId" th:value="${c.commentId}" />
+				<input type="hidden" id="hiddenLevel" th:value="${c.level}" />				
+				<input class="inputStyle" style="border:none;border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px;" th:id="modify+${c.commentId}" th:value="${c.commentContent}" readonly="true" /> |
+				<span th:text="${c.member.email}" /> |
+				<span th:text="${c.insDate}" /> |
+				<span th:if="${#authentication.name} == ${c.member.email}">
+					<button class="commentDeleteBtn" th:id="commentDeleteBtn_+${c.commentId}">X</button>
+					<button class="commentModifyBtn" th:id="commentModifyBtn_+${c.commentId}">수정</button>	
+				</span>
+				<span sec:authorize="isAuthenticated()">
+					<button class="reCommentBtnOpen" th:id="reCommentBtnOpen_+${c.commentId}">답글</button>
+					<button class="reCommentBtn" th:id="reCommentBtn_+${c.commentId}" style="display:none;">작성 완료</button>
+				</span>
+				<input type="text" th:id="reCommentContent_+${c.commentId}" style="display:none;"/>					
+			</div>
+		</div>

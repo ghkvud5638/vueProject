@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+	<meta charset="UTF-8">
+	<title>DETAIL</title>
+	<script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+	<script type="text/javascript" th:src="@{/js/board.js}"></script>
+
+</head>
+
+<style>
+	#content {
+		height: 220px;
+	}
+
+	#comment {
+		height: 40px;
+		margin: 0px 7px 20px 0px;
+	}
+
+	#inputStyle:focus {
+		outline: none;
+	}
+</style>
+
+<body class="container">
+
+	<div class="jumbotron">
+		<h2>DETAIL</h2>
+		<a href="/"><button class="btn btn-default pull-right">메인</button></a>
+	</div>
+	<input type="hidden" id="hiddenSeq" th:value="${detail.seq}" />
+	<input type="hidden" id="hiddenEmail" th:value="${detail.writer.email}" />
+	<table class="table">
+		<tr>
+			<td class="info">글 번호</td>
+			<td colspan="4" th:text="${detail.seq}"></td>
+		</tr>
+		<tr>
+			<td class="info">아이디</td>
+			<td th:text="${detail.writer.email}"></td>
+			<td class="info">닉네임</td>
+			<td th:text="${detail.writer.name}"></td>
+		</tr>
+
+		<tr>
+			<td class="info">조회수</td>
+			<td th:text="${detail.boardHits }"></td>
+			<td class="info">작성일</td>
+			<td th:text="${detail.insDate}"></td>
+		</tr>
+		<tr>
+			<td class="info">제목</td>
+			<td colspan="3" th:text="${detail.boardTitle }"></td>
+		</tr>
+
+		<tr>
+			<td class="info" colspan="4">본문</td>
+		</tr>
+
+		<tr>
+			<td colspan="4" id="content" th:text="${detail.boardContent }"></td>
+		</tr>
+	</table>
+
+	<div id="commentArea">
+		<div class="reload" th:replace="commentAreaHtml"></div>
+	</div>
+
+	<div th:if="${#authentication.name} == ${detail.writer.email}">
+			<a th:href="@{'/modify?seq='+${detail.seq}}"><button class="btn btn-default pull-left">수정</button></a>
+			<button id="btnDelete" class="btn btn-default pull-left">삭제</button>
+	</div>
+	
+	<div class="fixed-bottom">
+		<input id="commentContent" name="commentContent" type="text" value="" size=140 /><button id="commentApplyBtn" class="btn btn-primary">댓글 등록</button>
+	</div>
+	
+	
+</body>
+
+</html>

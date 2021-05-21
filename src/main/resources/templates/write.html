@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+	<meta charset="UTF-8">
+	<title>JPA BOARD</title>
+	<script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+	<script type="text/javascript" th:src="@{/js/board.js}"></script>
+</head>
+
+<body class="container">
+
+	<div class="jumbotron">
+		<h2>WRITE</h2>
+		<a href="/"><button class="btn btn-default pull-right">메인</button></a>
+	</div>
+
+	<div class="form-group">
+		<label for="writer">작성자</label>
+		<input type="text" id="writer" th:value="${#authentication.name}" readonly class="form-control">
+	</div>
+	<div class="form-group">
+		<label for="title">제목 :</label><input class="form-control" type="text" id="boardTitle" name="boardTitle"/>
+		<label for="content">내용:</label><textarea class="form-control" type="text" id="boardContent" name="boardContent" rows="10" style="width:100%;"></textarea>
+	</div>
+
+	<div class="text-center">
+		<button class="btn btn-primary" id="btnWrite">작성하기</button>
+		<input type="reset" id="cancel" class="btn btn-danger" value="초기회">	
+	</div>
+</body>
+
+</html>
