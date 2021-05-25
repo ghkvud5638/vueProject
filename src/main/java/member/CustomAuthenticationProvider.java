@@ -28,9 +28,6 @@ public class CustomAuthenticationProvider implements AuthenticationProvider{
 		String username = authentication.getName();
         String password = (String) authentication.getCredentials();
         
-        System.out.println("username : "+username);
-        System.out.println("password : "+password);
-        
 		UsernamePasswordAuthenticationToken authToken = (UsernamePasswordAuthenticationToken) authentication; 
 		
 		UserDetails user = memberService.loadUserByUsername(authToken.getName());

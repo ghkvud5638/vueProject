@@ -1,8 +1,10 @@
 package member;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
+import org.springframework.transaction.annotation.Transactional;
 
 public interface MemberRepository extends JpaRepository<Member, Long>{
 	
@@ -13,4 +15,13 @@ public interface MemberRepository extends JpaRepository<Member, Long>{
 	
 	@Query("select m from Member m where seq = :memberNo")
 	Member findByMemberNo(Long memberNo);
+	
+	@Transactional
+	@Modifying
+	@Query("UPDATE Member m set m.refreshToken = :refreshToken where m.seq = :seq ")
+	void updateRefreshToken(Long seq, String refreshToken);
 }
+
+
+//@Query("UPDATE Board b SET b.boardHits = b.boardHits + 1 where b.seq = :seq ")
+//void updateHits(@Param("seq") Long seq);

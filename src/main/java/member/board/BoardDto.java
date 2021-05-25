@@ -9,7 +9,7 @@ import member.comment.Comment;
 
 @Data
 public class BoardDto {
-	
+	 
 	private long seq;
 	private String boardTitle;
 	private String boardContent;

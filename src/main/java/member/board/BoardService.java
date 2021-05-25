@@ -67,11 +67,18 @@ public class BoardService {
 	public Board getBoardDetail(long seq) {
 		return boardRepository.getOne(seq);
 	}
-
+ 
 	public void insertBoardVue(Board board) {
 		boardRepository.save(board);
 	} 
+	public void deleteBoard(Board board) {
+		boardRepository.delete(board);
+	}
 
+	public void modifyBoard(BoardDto board) {
+		boardRepository.modifyBoard(board.getSeq(),board.getBoardTitle(),board.getBoardContent());
+	}
+	
 
 
 

@@ -33,28 +33,28 @@ public class MemberConfig extends WebSecurityConfigurerAdapter {
             .authorizeRequests() // 인증이 필요한 모든 요청에 대해
 	            .antMatchers("/admin/**").hasRole("ADMIN")	//Admin 권한이 있는 경우 접근 허용
 	            .antMatchers("/user/**").hasRole("USER")	//User 권한이 있는 경우 접근 허용
-                .antMatchers("/", "/home", "/signUp", "/signIn", "/create","/board","/board/**","/search","/search/**","/js/**","/commentApply","/commentDelete","/comment/**","/vue","/vue/**","/boardVue","/toast-ui/**","/tui-grid/**","/detailVue/**","/detailVue").permitAll() //해당 URL은 전체 접근 허용
+                .antMatchers("/", "/home", "/signUp", "/signIn", "/create","/board","/board/**","/search","/search/**","/js/**","/commentApply","/commentDelete","/comment/**","/vue","/vue/**","/boardVue","/toast-ui/**","/tui-grid/**","/detailVue/**","/detailVue","/loginVue").permitAll() //해당 URL은 전체 접근 허용
                 .anyRequest().authenticated()	//이외의 URL은 인증 절차를 수행하기 위해 login 페이지로 이동
                 .and().csrf().disable()
-            .formLogin() // formLogin을 사용할 것이다.
-                .loginPage("/login")
-                .usernameParameter("username")//아이디 파라미터명 설정
-                .passwordParameter("password")//패스워드 파라미터명 설정
-                //.failureUrl("/login.html?error=true")// 로그인 실패 후 이동 페이지
-                //.successHandler(loginSuccessHandler())//로그인 성공 후 핸들러 (해당 핸들러를 생성하여 핸들링 해준다.)
-                //.failureHandler(loginFailureHandler());//로그인 실패 후 핸들러 (해당 핸들러를 생성하여 핸들링 해준다.)
-                .permitAll()
-                .and()
-                
-            	.cors()
-            	.and()
-            	.csrf()
-            	.disable() 
-            	
-            .logout()
-            .logoutSuccessUrl("/")//로그아웃 성공 후 이동페이지
-            //.deleteCookies("JSESSIONID","remember-me")//로그아웃 후 쿠키 삭제
-                .permitAll()
+//            .formLogin() // formLogin을 사용할 것이다.
+//                .loginPage("/login")
+////                .usernameParameter("username")//아이디 파라미터명 설정
+////                .passwordParameter("password")//패스워드 파라미터명 설정
+//                //.failureUrl("/login.html?error=true")// 로그인 실패 후 이동 페이지
+//                //.successHandler(loginSuccessHandler())//로그인 성공 후 핸들러 (해당 핸들러를 생성하여 핸들링 해준다.)
+//                //.failureHandler(loginFailureHandler());//로그인 실패 후 핸들러 (해당 핸들러를 생성하여 핸들링 해준다.)
+//                .permitAll()
+//                .and()
+//                
+//            	.cors()
+//            	.and()
+//            	.csrf()
+//            	.disable() 
+//            	
+//            .logout()
+//            .logoutSuccessUrl("/")//로그아웃 성공 후 이동페이지
+//            //.deleteCookies("JSESSIONID","remember-me")//로그아웃 후 쿠키 삭제
+//                .permitAll()
                 //.and()
             //.sessionManagement() //세션 관리 기능이 작동함
             //.invalidSessionUrl("/login")//세션이 유효하지 않을 떄 이동 할 페이지

@@ -33,6 +33,11 @@ public interface BoardRepository extends JpaRepository<Board, Long>{
 	
 	Board findById(long id);
 
+
+	@Transactional
+	@Modifying
+	@Query("UPDATE Board b SET b.boardTitle = :boardTitle, b.boardContent = :boardContent where b.seq = :seq ")
+	void modifyBoard(@Param("seq") Long seq, @Param("boardTitle") String boardTtitle, @Param("boardContent") String boardContent);
 	
 	
 	

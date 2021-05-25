@@ -245,5 +245,18 @@ public class BoardController {
 		
 	}
 	
+	@RequestMapping("/board/deleteBoard")
+	public void deleteBoard(@RequestBody Board board) {
+		System.out.println("board : "+board);
+		boardService.deleteBoard(board);
+	}
+	
+	@RequestMapping("/board/modifyBoard")
+	public void modifyBoard(@RequestBody BoardDto board) {
+		System.out.println("modify : "+board);
+		boardService.modifyBoard(board);
+	}
+	
+	 
 	
 }

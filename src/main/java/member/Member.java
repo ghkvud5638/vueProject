@@ -34,6 +34,7 @@ public class Member {
 	private String password;
 	
 	private String name;
+	private String refreshToken;
 	
 	@Column(name = "RegDate")
 	@DateTimeFormat(pattern = "yyyy-MM-dd")

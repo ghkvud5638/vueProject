@@ -26,12 +26,50 @@
         </tr>
       </tbody>
     </table>
+
+  <b-modal ref='modifyModal' hide-footer>
+    <template>
+      <div class="d-block">
+        <h4>Modify</h4>
+      <table class="tbl-row">
+      <colgroup>
+        <col class="col-row-title" />
+        <col />
+        <col class="col-row-title" />
+        <col />
+      </colgroup>
+      <tbody>
+        <tr>
+          <th scope="row">제목</th>
+          <td colspan="3"><b-form-input v-model="boardDetail.boardTitle"></b-form-input></td>
+        </tr>
+        <tr>
+          <th scope="row">내용</th>
+          <td colspan="3">
+            <div class="board-content"><b-form-input v-model="boardDetail.boardContent"></b-form-input></div>
+          </td>
+        </tr>
+        <tr>
+          <th scope="row">등록자</th>
+          <td><b-form-input v-model="boardDetail.writerName" readonly></b-form-input></td>
+          <th scope="row">등록일</th>
+          <td><b-form-input v-model="boardDetail.insDate" readonly></b-form-input></td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+  </template>
+    <b-button class="mt-3" variant="outline-danger" block @click="modify">수정 완료</b-button>
+  </b-modal>
+  <b-button id="show-btn" @click="showModal">수정</b-button> 
+  <b-button type="button" @click="deleteBoard">삭제</b-button>&nbsp;
   </div>
 </template>
 
 <script>
 // import data from "@/data";
 // import CommentList from "./CommentList";
+import axios from "axios";
 
 export default {
   name: "BoardDetail",
@@ -64,18 +102,42 @@ export default {
           console.log("detail error : " + e);
         });
       return promise;
-    
-
   },
-
-  // watch:{
-  //   '$route':'setBoardDetail'
-  // },
-
   methods: {
-    // async setBoardDetail(seq) {
-    //    this.callBoardDetail(seq);
-    // },
+
+    showModal(){
+      this.$refs['modifyModal'].show()
+    },
+    modify(){
+      // this.$router.push({ name:'BoardModifyDetail', params:{seq:this.$route.params.seq}});
+
+    axios.post('/board/modifyBoard',{
+      seq:this.$route.params.seq,
+      boardTitle:this.boardDetail.boardTitle,
+      boardContent:this.boardDetail.boardContent,
+      writerName:this.boardDetail.writerName,
+      insDate:this.boardDetail.insDate,
+    })
+    .then(()=>{
+      console.log("/board/modify");
+      // this.$router.push({ name:'BoardDetail', params:{seq:mParam.seq}});
+      // this.$router.reload()
+    });
+
+    console.log(this.boardDetail.boardContent)
+
+    this.$refs['modifyModal'].hide()
+    },
+
+    deleteBoard(){
+      axios.post('/board/deleteBoard',{
+        seq:this.$route.params.seq
+      })
+      .then(()=>{
+        console.log("delete");
+        this.$router.push('/');
+      });
+    }
 
   },
   components: {
