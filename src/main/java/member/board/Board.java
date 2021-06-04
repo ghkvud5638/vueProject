@@ -1,6 +1,7 @@
 package member.board;
 
 import java.util.Date;
+
 import java.util.List;
 
 import javax.persistence.Column;
@@ -42,7 +43,10 @@ public class Board {
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date insDate;
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	// FetchType은 JPA가 하나의 Entity를 조회할 떄, 연관관계에 있는 객체들을 어떻게 가져올 것이냐를 나타내는 설정값.
+	// Eager 전략 -> 연관관계에 있는 Entity 값들을 모두 가져온다.
+	// Lazy 전략 -> 연관관계에 있는 Entity를 가져오지 않고, getter로 접근할 때 가져온다.
+	@ManyToOne(fetch = FetchType.LAZY) // ManyToOne-> Board Entity는 
 	@JoinColumn(name = "member_id")
 	private Member writer;
 	

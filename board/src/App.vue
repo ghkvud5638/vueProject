@@ -8,7 +8,6 @@
 </template>
 
 <script>
-// import request from "request";
 import Header from "@/components/Header";
 
 
@@ -18,6 +17,12 @@ export default {
     Header
   },
   mounted() {
+  },
+  methods:{
+    reload(){
+      this.$router.push("/");
+      this.$router.go(0);
+    },
   }
 };
 </script>

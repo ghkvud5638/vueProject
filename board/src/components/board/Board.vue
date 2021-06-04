@@ -6,7 +6,6 @@
 			:boardList="boardList"
 		/>
 		<b-button to="/boardCreateVue" variant="outline-primary">글쓰기</b-button>
-		
 	</div>
 </template>
 
@@ -62,20 +61,18 @@ export default {
 		},
 
 		// 게시판 목록 API 조회
-		async callBoardList() {
+		async callBoardList() { // async 현재 사용할 함수를 비동기로 처리하겠다
 			const apiUrl = "/boardVue"
 
-			await this.$http
+			await this.$http // await 비동기로 순차 처리하기 위해서 수행할 API에 붙이는 선언자
 				.post(apiUrl)
 				.then((solve) => {
 					this.boardList = solve.body;
-					// console.log("solve : "+solve.bodyText)
 					return solve;
 				})
 				.catch((e) => {
-					console.log("here not good "+e);
+					console.log(e);
 				});
-			// console.log("here good : "+this.boardList);
 		}
 	}
 }

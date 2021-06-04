@@ -1,6 +1,7 @@
 package member;
 
 import java.util.Arrays;
+
 import java.util.stream.IntStream;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,10 +29,11 @@ public class Application implements WebMvcConfigurer{
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
 		System.out.println("여기 addInterceptors");
-		registry.addInterceptor(jwtInterceptor).addPathPatterns("/detailVue/**") // 적용 경로
-			.excludePathPatterns(Arrays.asList("/**","/board/**")); //제외 경로
+		registry.addInterceptor(jwtInterceptor).addPathPatterns("/**") // 적용 경로
+			.excludePathPatterns(Arrays.asList("/**","/boardVue","/signUp","/loginVue")); //제외 경로 , 이곳에서 걸리면 JwtInterceptor.java  
 	}
 	
+	//cross origin 처리
 	@Override
 	public void addCorsMappings(CorsRegistry registry) {
 		System.out.println("여기 addCorsMappings");
@@ -43,7 +45,7 @@ public class Application implements WebMvcConfigurer{
 	}
 	
 	
-	
+	// commandlinerunner 어플리케이션이 구동된 후에 코드가 실행
     @Bean
     public CommandLineRunner initData(BoardRepository boardRepository, MemberRepository memberRepository) {
         return args -> 

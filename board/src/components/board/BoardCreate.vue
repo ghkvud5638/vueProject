@@ -28,11 +28,13 @@ export default {
   },
   methods: {
     uploadContent() { // 저장
-      console.log("here");
+      console.log("here writer name");
+      console.log(sessionStorage.login_user)
 
       const param = {
         boardTitle:this.title,
-        boardContent:this.content
+        boardContent:this.content,
+        writerName: sessionStorage.login_user
 
       }
       console.log(param);
@@ -42,9 +44,7 @@ export default {
       const promise = this.$http
         .post(apiUrl,param)
         .then(()=> {
-          this.$router.push({
-            path:`/`
-          });
+          this.$router.push({path:`/`});
       })
       .catch(e => {
         console.log("create error : " + e);

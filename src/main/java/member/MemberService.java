@@ -87,7 +87,7 @@ public class MemberService implements UserDetailsService {
 //		String pw = passwordEncoder.encode(member.getPassword());
 		System.out.println("복호화된 패스워드가 같음? : "+passwordEncoder.matches(password, member.getPassword()));	
 		
-		if (email.equals(member.getEmail()) &&passwordEncoder.matches(password, member.getPassword()) ) {
+		if (email.equals(member.getEmail()) && passwordEncoder.matches(password, member.getPassword()) ) {
 			return member;
 		}else {
 			throw new RuntimeException("그런 사람 없어!");

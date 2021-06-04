@@ -143,7 +143,6 @@ public class BoardController {
 			cd.setLevel(c.getLevel());
 			res.add(cd);
 		}
-		System.out.println("여기! fuck! "+res);
 		return res;
 	}
 
@@ -232,17 +231,17 @@ public class BoardController {
 	}
 	
 	@RequestMapping("/board/boardCreateVue")
-	public void boardCreateVue(@RequestBody Board board) {
-		long num = 1;
-		board.setWriter(memberRepository.findByMemberNo(num)); // 글 작성시 작성자 하드코딩
-		
+	public void boardCreateVue(@RequestBody BoardDto board) {
+		board.setWriter(memberRepository.findByEmail(board.getWriterName()));
 		board.setInsDate(new Date());
-//		b.setWriter(memberRepository.findByEmail(principal.getName()));
 		board.setBoardHits(0);
-
-		System.out.println("create here : " + board);
-		boardService.insertBoardVue(board);
-		
+		Board b = new Board();
+		b.setWriter(board.getWriter());
+		b.setBoardHits(board.getBoardHits());
+		b.setBoardContent(board.getBoardContent());
+		b.setBoardTitle(board.getBoardTitle());
+		b.setInsDate(board.getInsDate());
+		boardService.insertBoardVue(b);
 	}
 	
 	@RequestMapping("/board/deleteBoard")

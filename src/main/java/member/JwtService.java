@@ -25,16 +25,28 @@ public class JwtService {
 	
 	//로그인 성공시 사용자 정보를 기반으로 jwttoken을 생성하여 반환
 	public String create(final Member member) {
+		//jwt token = Header + Payload + Signature
+		
+		//Jwts.builder() 메서드로 JwtBuilder 인스턴스를 생성.
 		final JwtBuilder builder = Jwts.builder();
+		
+		//Header 설정 
 		builder.setHeaderParam("typ", "JWT");//토큰의 타입, 고정값
 		
-		builder.setSubject("로그인 완료")
+		//Payload 설정 - claim 정보 포함 
+		//JwtBuilder의 메서드로 header 매개변수와 claims를 정의.
+		builder.setSubject("로그인 토큰") // 토큰 제목 설정
 				.setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * expireMin))//유효기간
-				.claim("Member", member).claim("second", "더 담고싶은거 있어?");//담고싶은 정보
+				.claim("Member", member).claim("second", "더 담고싶은거 있어?");//담고싶은 정보 
+				//** claim 정보 -> 사용자에 대한 속성
 		
-		//signature - seceret key를 이용한 암호화
+		//signature - secret key를 이용한 암호화
+		//JWT를 서명하고 싶다면 비밀키나 공유키를 지정합니다.
 		builder.signWith(SignatureAlgorithm.HS256, salt.getBytes());
+		//** 서명 - 토큰 자체가 정보를 담고 있기 때문에 토큰을 탈취해 변조가 가능한 것을 방지
 		
+		
+		//직렬화 처리
 		final String jwt = builder.compact();
 		return jwt;
 	}

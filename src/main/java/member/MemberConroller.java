@@ -82,7 +82,11 @@ public class MemberConroller {
         HttpStatus status = null;
         try {
         	Member loginUser = this.member.login(member.getEmail(),member.getPassword());
+        	//로그인 성공하면 코튼 생성
         	String token = jwtService.create(loginUser);
+        	System.out.println("토큰 : "+token);
+        	
+        	//토큰정보는 request의 헤더로 보내고 나머지는 Map에 담음
         	res.setHeader("jwt-auth-token", token);
         	
         	resultMap.put("status", true);

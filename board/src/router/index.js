@@ -7,6 +7,7 @@ import BoardDetail from "@/components/board/BoardDetail";
 import BoardCreate from "@/components/board/BoardCreate";
 import NotFound from "@/components/NotFound";
 import Signup from "@/components/member/SignUp";
+import userInfo from "@/components/userInfo";
 
 Vue.use(VueRouter); // 뷰 어플리케이션에 라우터 플러그인을 추가한다.
 
@@ -29,13 +30,9 @@ export default new VueRouter({
       name: "BoardDetail",
       component: BoardDetail,
       props:true
-      // redirect:'/detailVue'
-      
-      // props:true
     },
 
     {
-      // path: "/board/create/:contentId?",
       path: "/boardCreateVue",
       name: "boardCreateVue",
       component: BoardCreate
@@ -49,6 +46,11 @@ export default new VueRouter({
       path: "*",
       name: "NotFound",
       component: NotFound
+    },
+    {
+      path:"/userInfo",
+      name:"userInfo",
+      component:userInfo
     }
   ]
 });
