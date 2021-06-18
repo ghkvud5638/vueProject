@@ -1,7 +1,6 @@
 package member;
 
 import java.util.Arrays;
-
 import java.util.stream.IntStream;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +14,8 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import member.board.Board;
 import member.board.BoardRepository;
+import member.system.Authority;
+import member.system.AuthorityRepository;
 
 @SpringBootApplication
 public class Application implements WebMvcConfigurer{
@@ -47,7 +48,7 @@ public class Application implements WebMvcConfigurer{
 	
 	// commandlinerunner 어플리케이션이 구동된 후에 코드가 실행
     @Bean
-    public CommandLineRunner initData(BoardRepository boardRepository, MemberRepository memberRepository) {
+    public CommandLineRunner initData(BoardRepository boardRepository, MemberRepository memberRepository, AuthorityRepository authorityRepository) {
         return args -> 
             IntStream.rangeClosed(1, 154).forEach(i -> {
             	Member user =  Member.builder()
@@ -65,6 +66,16 @@ public class Application implements WebMvcConfigurer{
                         .build(); 
 
                 boardRepository.save(b); 
+                
+                Authority auth = Authority.builder()
+                		.groupauthNm("num"+i)
+                		.commentTxt("sampleComment"+i)
+                		.useYn("useYn"+i)
+                		.build();
+                
+                authorityRepository.save(auth);
+                
             });
+            
     }
 }

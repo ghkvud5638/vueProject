@@ -1,18 +1,21 @@
 <template>
 	<div class="board">
+
 		<BoardList
 			ref="boardList"
 			:gridHeader="gridHeader"
 			:boardList="boardList"
 		/>
-		<b-button to="/boardCreateVue" variant="outline-primary">글쓰기</b-button>
+    <b-form-input v-model="searchText" id="searchText"/>
+    <b-button @click="search" class="mt-3" variant="outline-primary">검색</b-button>
+	<b-button  class="mt-3" to="/boardCreateVue" variant="outline-primary">글쓰기</b-button>
 	</div>
 </template>
 
 <script>
 import 'tui-grid/dist/tui-grid.css'
 import BoardList from '@/components/board/BoardList.vue'
-
+import axios from "axios";
 
 export default {
 	name: 'Board',
@@ -21,7 +24,8 @@ export default {
 	},
 	data(){
 		return {
-			boardList: []
+			boardList: [],
+			searchText:""
 		}
 	},
 	created() {
@@ -73,6 +77,19 @@ export default {
 				.catch((e) => {
 					console.log(e);
 				});
+		}
+		,
+		search(){
+			console.log(this.searchText)
+
+			axios.post("/boardVue",{
+				searchText:this.searchText
+			}
+
+			).then(res=>{
+				console.log(res)
+			})
+			.catch()
 		}
 	}
 }

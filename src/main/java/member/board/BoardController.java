@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -15,7 +17,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -190,9 +191,10 @@ public class BoardController {
 	}
 
 	@RequestMapping("/boardVue")
-	public List<BoardDto> getBoardList(){
+	public List<BoardDto> getBoardList(@RequestBody(required=false) String searchText){
 		System.out.println("im here");
-		List<Board> boardList = boardService.getBoardVueList();
+		System.out.println(searchText);
+		List<Board> boardList = boardService.getBoardVueList(searchText);
 		
 		List<BoardDto> boardListDto = new ArrayList<>();
 		for(Board bl : boardList) {
@@ -256,6 +258,11 @@ public class BoardController {
 		boardService.modifyBoard(board);
 	}
 	
-	 
+//	@RequestMapping("/api/search")
+//	public List<BoardDto> search(@RequestBody String searchText){
+//		System.out.println("search : "+searchText);
+//		boardService.search(searchText);
+//		return null;
+//	}	 
 	
 }

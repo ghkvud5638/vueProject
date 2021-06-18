@@ -1,6 +1,8 @@
 package member.board;
 
 
+import java.util.List;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -28,6 +30,8 @@ public interface BoardRepository extends JpaRepository<Board, Long>{
 //	)
 	Page<Board> findByBoardTitleContaining(Pageable pageable, String searchText);
 	
+	List<Board> findByBoardTitleContaining(String searchText);
+	
 	Board findById(long id);
 
 
@@ -35,6 +39,7 @@ public interface BoardRepository extends JpaRepository<Board, Long>{
 	@Modifying
 	@Query("UPDATE Board b SET b.boardTitle = :boardTitle, b.boardContent = :boardContent where b.seq = :seq ")
 	void modifyBoard(@Param("seq") Long seq, @Param("boardTitle") String boardTtitle, @Param("boardContent") String boardContent);
+
 	
 	
 	

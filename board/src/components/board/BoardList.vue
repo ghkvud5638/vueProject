@@ -14,7 +14,7 @@
         <strong><span class="count">{{ gridProps.data.length }}</span></strong>
         개 게시글
       </span>
-      <div class="select-box">
+      <!-- <div class="select-box">
         <vSelect
           ref="perPage"
           :options="pageData.data"
@@ -23,17 +23,17 @@
           v-model="perPage"
           :reduce="(label) => label.value"
         ></vSelect>
-      </div>
-    </div>
+      </div> -->
 
-  </div>
+    </div>
+</div>
 </template>
 
 <script>
 import "vue-select/dist/vue-select.css";
 import 'tui-pagination/dist/tui-pagination.css';
 import { Grid } from "@toast-ui/vue-grid";
-import vSelect from "vue-select";
+// import vSelect from "vue-select";
 import TuiGrid from 'tui-grid';
 TuiGrid.applyTheme('clean');
 // import BoardDetail from '@/components/board/BoardDetail.vue'
@@ -44,7 +44,7 @@ export default {
   props: ["gridHeader", "boardList"],
    components: {
     Grid,
-    vSelect,
+    // vSelect,
     // BoardDetail
   },
   data(){
@@ -82,7 +82,12 @@ export default {
         columns: this.gridHeader,
         data: this.boardList
         }
-      }
+      },
+
+
+
+
+
   },
   watch: {
     gridHeader(val) {
@@ -111,6 +116,12 @@ export default {
     onPerPageInput(data) {
       this.$refs.tuiGrid.invoke("setPerPage", data);
     },
+
+
+
+
+
+
   },
   
 }

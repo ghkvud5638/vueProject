@@ -1,0 +1,141 @@
+
+.tui-tree-wrap {
+	.tui-tree {
+		.tui-tree-text {
+			font-size: 14px;
+		}
+
+		.tui-tree-node > .tui-tree-content-wrapper .tui-tree-text {
+			font-weight: 700;
+		}
+
+		// 1depth
+		> .tui-tree-node {
+
+			&.tui-tree-closed {
+				+ .tui-tree-node {
+					margin-top: 20px;
+				}
+			}
+			+ .tui-tree-node {
+				margin-top: 21px;
+			}
+			.tui-tree-toggle-btn {
+				width: 16px;
+				height: 16px;
+				padding: 0;
+				border: none;
+				background: {
+					color: transparent;
+					image: url(~assets/images/ui/ui_tree_icon.png);
+					repeat: no-repeat;
+					position: 0 0;
+				}
+				vertical-align: top;
+
+				+ .tui-tree-text {
+					line-height: 16px;
+					margin-left: 11px;
+				}
+			}
+
+			.tui-tree-file-btn {
+				width: 16px;
+				height: 16px;
+				padding: 0;
+				border: none;
+				background: {
+					color: transparent;
+					//image: url(~assets/images/ui/free-icon-user.png);
+					repeat: no-repeat;
+					position: 0 0;
+				}
+				vertical-align: top;
+
+				+ .tui-tree-text {
+					line-height: 16px;
+					margin-left: 11px;
+				}
+			}
+
+			.tui-tree-text {
+			}
+			&.tui-tree-opened {
+				.tui-tree-toggle-btn {
+					background-position: -16px 0;
+				}
+			}
+			// 2depth
+			.tui-tree-subtree {
+				margin-top: 13px;
+				margin-left: 26px;
+				.tui-tree-node {
+
+					+ .tui-tree-node {
+						margin-top: 18px;
+					}
+					.tui-tree-toggle-btn {
+						width: 16px;
+						height: 16px;
+						background-position: 0 0;
+
+						+ .tui-tree-text {
+							line-height: 16px;
+						}
+					}
+
+					.tui-tree-text {
+					}
+					&.tui-tree-opened {
+						.tui-tree-toggle-btn {
+							background-position: -16px 0;
+						}
+					}
+				}
+				// 3depth
+				.tui-tree-subtree {
+					margin-top: 15px;
+					margin-left: 23px;
+					.tui-tree-node {
+
+						+ .tui-tree-node {
+							margin-top: 19px;
+						}
+						.tui-tree-toggle-btn {
+							width: 16px;
+							height: 16px;
+							background-position: 0 0;
+
+							+ .tui-tree-text {
+								line-height: 16px;
+							}
+						}
+
+						.tui-tree-text {
+
+						}
+
+						&.tui-tree-opened {
+							.tui-tree-toggle-btn {
+								background-position: -16px 0;
+							}
+						}
+					}
+					// 4depth
+					.tui-tree-subtree {
+						margin-left: 20px;
+						.tui-tree-node {
+
+							+ .tui-tree-node {
+								margin-top: 12px;
+							}
+						}
+						.tui-tree-text {
+
+						}
+					}
+				}
+			}
+		}
+	}
+}

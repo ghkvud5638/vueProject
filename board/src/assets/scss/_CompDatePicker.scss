@@ -1,0 +1,122 @@
+
+.datepicker-box {
+	display: inline-block;
+	vertical-align: top;
+
+	.tui-datepicker-input {
+		width: 140px;
+		height: 34px;
+		border-color: #ccc;
+
+		> input {
+			color: #111;
+			padding: 0 34px 0 8px;
+			font-size: 14px;
+		}
+
+		> .tui-ico-date {
+			width: 18px;
+			height: 19px;
+			margin-top: -10px;
+			background: {
+				image: url(~assets/images/ui/ui_form_datepicker_ico.png);
+				position: 0 0;
+			}
+		}
+
+		@at-root #app.mobile .datepicker-box .tui-datepicker-input {
+			width: 112px;
+			> input {
+				font-size: 13px;
+				padding-right: 30px;
+				padding-left: 7px;
+			}
+			> .tui-ico-date {
+				width: 14px;
+				height: 16px;
+				background-size: 14px 16px;
+				margin-top: -7px;
+			}
+		}
+	}
+
+	.tui-datepicker-container {
+		position: relative;
+		margin-top: -1px;
+		z-index: 100;
+
+		.tui-datepicker {
+			border-color: #999;
+			left: 0;
+
+			.tui-datepicker-type-date {
+				width: 248px;
+			}
+
+			.tui-is-selectable.tui-is-selected {
+				background-color: #fff;
+				border: 1px solid $primaryColor;
+			}
+		}
+
+		.tui-calendar {
+			width: 248px;
+
+			.tui-calendar-header {
+				border-bottom: none;
+
+				.tui-calendar-header-inner {
+					height: 44px;
+					padding: 0 50px;
+
+					.tui-calendar-btn {
+						height: 44px;
+					}
+				}
+			}
+
+			.tui-calendar-title {
+				color: #111;
+				font-size: 13px;
+				font-weight: 700;
+				line-height: 44px;
+			}
+
+			th, td {
+				color: #111;
+				height: 32px;
+				vertical-align: middle;
+
+			}
+
+			th {
+				font-size: 12px;
+			}
+
+			td {
+				font-size: 11px;
+			}
+
+			.tui-sun, .tui-calendar-sun {
+				color: $redColor;
+			}
+
+			.tui-sat, .tui-calendar-sat {
+				color: $primaryColor;
+			}
+
+			.tui-calendar-today {
+				//color:
+				background: #f0f0f0;
+			}
+
+			.tui-is-blocked {
+				color: #ccc;
+			}
+
+			.tui-calendar-body {
+				padding: 0 12px 12px;
+			}
+		}
+	}
+}

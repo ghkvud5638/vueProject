@@ -61,8 +61,13 @@ public class BoardService {
 		boardRepository.deleteById(board.getSeq());
 	}
 
-	public List<Board> getBoardVueList() {
-		return boardRepository.findAll(Sort.by(Sort.Direction.DESC, "seq"));
+	public List<Board> getBoardVueList(String searchText) {
+		if(searchText == null) {
+			return boardRepository.findAll(Sort.by(Sort.Direction.DESC, "seq"));
+			
+		}else { 
+			return boardRepository.findByBoardTitleContaining(searchText);
+		}
 	}
 
 	public Board getBoardDetail(long seq) {
@@ -79,6 +84,8 @@ public class BoardService {
 	public void modifyBoard(BoardDto board) {
 		boardRepository.modifyBoard(board.getSeq(),board.getBoardTitle(),board.getBoardContent());
 	}
+
+
 	
 
 

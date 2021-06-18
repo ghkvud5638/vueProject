@@ -76,12 +76,19 @@
       <b-button id="show-btn" @click="showModal">수정</b-button>
       <b-button type="button" @click="deleteBoard">삭제</b-button>&nbsp;
     </div>
+
+
+
+
+
   </div>
 </template>
 
 <script>
-// import CommentList from "./CommentList";
 import axios from "axios";
+
+
+
 
 export default {
   name: "BoardDetail",
@@ -109,6 +116,11 @@ export default {
         console.log("detail error : " + e);
       });
     return promise;
+
+    
+
+
+
   },
   methods: {
     showModal() {
@@ -138,11 +150,16 @@ export default {
           console.log("delete");
           this.$router.push("/");
         });
-    }
+    },
+
   },
   components: {
     // CommentList
+  },
+
+  computed:{
   }
+
 };
 </script>
 <style scoped>

@@ -1,0 +1,54 @@
+@import '~assets/css/reset.css';
+@import 'https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&family=Open+Sans:wght@400;700&display=swap';
+
+*, *:before, *:after {color: #111; -webkit-box-sizing: border-box;box-sizing: border-box;}
+
+body {
+	overflow-y: scroll;
+}
+
+input::-ms-clear {display: none;}
+input {-webkit-appearance: none;}
+input[type="search"]::-webkit-search-decoration,
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-results-button,
+input[type="search"]::-webkit-search-results-decoration {
+	-webkit-appearance:none;
+}
+
+input, textarea, a, button {
+	outline: none;
+}
+
+input {
+	margin: 0;
+
+	&[type=text], &[type=password], &[type=email] {
+		@include set_placeholder_color(#a6a6a6);
+	}
+}
+
+button {
+	vertical-align: top;
+	cursor: pointer;
+}
+a, a:active, a:focus, a:hover, a:link, a:visited { text-decoration:none;}
+a.disabled, button[disabled] {
+	pointer-events: none;
+	cursor: default;
+}
+input {-webkit-appearance: none;}
+input[type="search"]::-webkit-search-decoration,
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-results-button,
+input[type="search"]::-webkit-search-results-decoration {
+	-webkit-appearance:none;
+}
+input::-ms-clear {display: none;}
+
+.offscreen {@include offscreen;}
+
+#app {
+	@import 'UILayout';
+	@import 'UIForm';
+}

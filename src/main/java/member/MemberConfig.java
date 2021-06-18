@@ -33,7 +33,7 @@ public class MemberConfig extends WebSecurityConfigurerAdapter {
             .authorizeRequests() // 인증이 필요한 모든 요청에 대해
 	            .antMatchers("/admin/**").hasRole("ADMIN")	//Admin 권한이 있는 경우 접근 허용
 	            .antMatchers("/user/**").hasRole("USER")	//User 권한이 있는 경우 접근 허용
-                .antMatchers("/", "/home", "/signUp", "/signIn", "/create","/board","/board/**","/search","/search/**","/js/**","/commentApply","/commentDelete","/comment/**","/vue","/vue/**","/boardVue","/toast-ui/**","/tui-grid/**","/detailVue/**","/detailVue","/loginVue").permitAll() //해당 URL은 전체 접근 허용
+                .antMatchers("/", "/home", "/signUp", "/signIn", "/create","/board","/board/**","/search","/search/**","/js/**","/commentApply","/commentDelete","/comment/**","/vue","/vue/**","/boardVue","/toast-ui/**","/tui-grid/**","/detailVue/**","/detailVue","/loginVue","/getUserDetail","/api/**","/assets/**").permitAll() //해당 URL은 전체 접근 허용
                 .anyRequest().authenticated()	//이외의 URL은 인증 절차를 수행하기 위해 login 페이지로 이동
                 .and().csrf().disable()
 //            .formLogin() // formLogin을 사용할 것이다.

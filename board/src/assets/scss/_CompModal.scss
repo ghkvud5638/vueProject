@@ -1,0 +1,137 @@
+
+.modal-popup {
+	position: fixed;
+	background: rgba(#000, .5);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	//overflow-y: scroll;
+	left: 0;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	z-index: 1000;
+
+	.modal-popup-inner {
+		width: 400px;
+		background: #fff;
+		border: 1px solid #999;
+		@include boxShadow;
+
+		.modal-popup-header {
+			display: flex;
+			padding: 30px 30px 0;
+			justify-content: space-between;
+
+			.modal-popup-title {
+				flex: 1;
+				margin: 5px 0;
+				font-size: 18px;
+				font-weight: 700;
+				white-space: nowrap;
+				overflow: hidden;
+				text-overflow: ellipsis;
+			}
+
+			.btn-modal-close {
+				flex: 0 0 19px;
+				height: 19px;
+				padding: 0;
+				background: {
+					color: transparent;
+					image: url(~assets/images/ui/ui_modal_close.png);
+					repeat: no-repeat;
+					position: center;
+				}
+				border: none;
+				font-size: 0;
+			}
+		}
+
+		.modal-popup-body {
+			max-height: calc(100vh - 60px);
+			padding: 0 30px 30px;
+			overflow-y: auto;
+
+			.modal-popup-body-inner {
+				margin-top: 11px;
+				padding-top: 21px;
+				border-top: 1px solid #ccc;
+
+				.btn {
+					min-width: 60px;
+					padding: {
+						left: 8px;
+						right: 8px;
+					}
+				}
+				.form-table {
+					+ .modal-popup-btn-box {
+						margin-top: 8px;
+					}
+				}
+				.modal-popup-btn-box {
+					display: flex;
+					align-items: flex-end;
+					flex-direction: row-reverse;
+					margin-top: 20px;
+
+					.btn {
+						margin-left: 6px;
+					}
+				}
+			}
+		}
+	}
+
+	&.type-black {
+		.modal-popup-inner {
+			border: none;
+
+			.modal-popup-header {
+				background: #1c1c1c;
+				padding: 20px 30px;
+
+				.modal-popup-title {
+					color: #fff;
+					margin: 0;
+					font-size: 20px;
+					font-weight: 500;
+					line-height: 18px;
+				}
+				.btn-modal-close {
+					width: 17px;
+					height: 17px;
+					background-image: url(~assets/images/ui/ui_modal_close_white.png);
+				}
+			}
+			.modal-popup-body {
+				background: #f1f1f1;
+				border: 1px solid #999;
+				border-top: none;
+				padding: 20px 30px 30px;
+
+				.modal-popup-body-inner {
+					margin-top: 0;
+					padding-top: 0;
+					border-top: none;
+
+					.modal-box-title {
+						font-size: 16px;
+						font-weight: 700;
+					}
+
+					.modal-white-box {
+						margin-top: 13px;
+						padding: 20px 30px;
+						background: #fff;
+
+						+ .modal-box-title {
+							margin-top: 22px;
+						}
+					}
+				}
+			}
+		}
+	}
+}

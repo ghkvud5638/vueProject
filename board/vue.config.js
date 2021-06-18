@@ -13,5 +13,23 @@ module.exports ={
 			}
 		}
 
-	}
+	},
+	// configureWebpack: {
+	// 	resolve: {
+	// 	  alias: {
+	// 		assets: path.resolve("./src/assets"),
+	// 	  },
+	// 	},
+	//   },
+	// css: {
+	// 	loaderOptions: {
+	// 	  scss: {
+	// 		additionalData: `
+	// 					@import "@/assets/scss/_scss_header.scss";
+	// 					@import "@/assets/scss/UIComplex.scss";
+	// 					@import "@/assets/scss/Component.scss";
+	// 				`,
+	// 	  },
+	// 	},
+	//   },
 }

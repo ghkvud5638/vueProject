@@ -1,0 +1,28 @@
+@function is_number($value) {
+	@return type-of($value) == 'number';
+}
+
+@function is_absolute_length($value) {
+	@return is_number($value) and index('cm' 'mm' 'in' 'px' 'pt' 'pc', unit($value)) != null;
+}
+
+@function pow($number, $exponent) {
+	$value: 1;
+
+	@if $exponent > 0 {
+		@for $i from 1 through $exponent {
+			$value: $value * $number;
+		}
+	}
+
+	@return $value;
+}
+
+@function parseInt($n) {
+	@return $n / ($n * 0 + 1);
+}
+
+@function convertRemToPx($size) {
+	$value: parseInt($size) * $defaultFontSize;
+	@return round($value);
+}

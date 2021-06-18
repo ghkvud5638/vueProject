@@ -120,4 +120,19 @@ public class MemberConroller {
 		}
         return new ResponseEntity<Map<String,Object>>(resultMap, status);
 	}
+	
+	@RequestMapping("/getUserDetail")
+	public Member getUserDetail(@RequestBody Member member) {
+		System.out.println("유저 정보"+member);
+		Member result = this.member.getUser(member);
+		System.out.println("유저 : "+result);		
+		return result;
+	} 
+	
+	@RequestMapping("/api/modifyUserInfo")
+	public void modifyUserInfo(@RequestBody Member member) {
+		System.out.println("modifyUserInfo"+member);
+		this.member.modifyUser(member);
+	}
+	
 }

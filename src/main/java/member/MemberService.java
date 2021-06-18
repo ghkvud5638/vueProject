@@ -98,6 +98,14 @@ public class MemberService implements UserDetailsService {
 	public String getServerInfo() {
 		return "made by 화평__뭐여 이건";
 	}
+
+	public Member getUser(Member member) {
+		return memberRepository.findByUserId(member.getEmail());
+	}
+
+	public void modifyUser(Member member) {
+		memberRepository.modifyUserInfo(member.getEmail(),member.getName());
+	}
 	
 	
 

@@ -1,0 +1,344 @@
+
+.tui-grid {
+
+	.tui-grid-container {
+		font-family: 'Open sans', 'Noto Sans KR', sans-serif;
+
+		.tui-grid-border-line-top {
+			border-color: #e5e5e5;
+		}
+
+		.tui-grid-border-line-bottom {
+			border-bottom-color: #dee2e5;
+		}
+
+		.tui-grid-cell-header, .tui-grid-cell {
+			padding: 10px;
+		}
+
+		.tui-grid-cell {
+			font-size: 14px;
+			background-color: #fff;
+			border: {
+				top-color: #dee2e5;
+				bottom-color: #dee2e5;
+			}
+
+			&.tui-grid-cell-header {
+				background: #f7f7f7;
+				border-right: none;
+				border-left: none;
+				border-bottom-color: #ccc;
+				font-size: 13px;
+				font-weight: 700;
+			}
+		}
+
+		.tui-grid-cell-has-input {
+			.tui-grid-cell-content {
+				padding: 3px 0;
+				//font-size: 14px;
+			}
+		}
+
+		.tui-grid-cell-content {
+			&.error-test-text {
+				position: relative;
+				display: inline-block;
+
+				&.valid-fail-text {
+
+					&:after {
+						content: '';
+						position: absolute;
+						display: inline-block;
+						width: 100%;
+						height: 1px;
+						background: $errorColor;
+						left: 0;
+						bottom: 0;
+					}
+				}
+			}
+
+			&.clickable-text, a.clickable-text {
+				cursor: pointer;
+				text-decoration: underline;
+			}
+		}
+
+		.tui-grid-cell.row-error {
+			background: #fff8f9;
+		}
+
+		.tui-grid-cell.row-checked {
+			background: #f7fcff;
+		}
+
+		.tui-grid-row-even, .tui-grid-row-odd {
+			&.tui-grid-row-hover {
+				td {
+					background: #fafafa;
+				}
+			}
+		}
+
+
+		.tui-grid-layer-focus-border {
+			background: transparent;
+		}
+
+		.tui-grid-layer-selection {
+			//background: none;
+			//border: none;
+		}
+
+		.tui-grid-pagination {
+			margin-bottom: 0;
+			padding-bottom: 6px;
+
+			.tui-page-btn {
+				color: rgba(#111, .7);
+				font-size: 13px;
+				border: none;
+
+				[class*='tui-ico'] {
+					width: 28px;
+					height: 28px;
+					background: {
+						image: url(~assets/images/ui/ui_grid_pagination_arrow.png);
+						repeat: no-repeat;
+						position: 0 0;
+					}
+				}
+
+				+ .tui-page-btn {
+					margin-right: 6px;
+				}
+
+				&:not(.tui-is-selected):hover {
+					background: #f0f0f0;
+				}
+
+				&.tui-first, &.tui-prev, &.tui-next, &.tui-last {
+					&:hover {
+						background: #fff;
+					}
+				}
+
+				&.tui-last-child, &.tui-first, &.tui-next, &.tui-last {
+					margin-right: 0;
+				}
+
+				&.tui-prev {
+					margin-right: 12px;
+
+					[class*='tui-ico'] {
+						background-position: -28px 0;
+					}
+				}
+
+				&.tui-next {
+					margin-left: 12px;
+					margin-right: 0;
+
+					[class*='tui-ico'] {
+						background-position: 0 -28px;
+					}
+				}
+
+				&.tui-last {
+					[class*='tui-ico'] {
+						background-position: -28px -28px;
+					}
+				}
+
+				&.tui-is-disabled {
+					opacity: .4;
+				}
+
+				&.tui-is-selected {
+					color: #111;
+					background: #fff;
+					border: 1px solid #494949;
+					font-weight: 700;
+				}
+			}
+
+		}
+	}
+
+	.btn {
+		box-sizing: border-box;
+	}
+
+	@at-root #app.mobile {
+		.tui-grid .tui-grid-container .tui-grid-cell {
+			font-size: 13px;
+			padding: 10px 8px;
+
+			&.tui-grid-cell-header {
+				font-size: 12px;
+			}
+		}
+	}
+}
+
+.grid-box {
+	position: relative;
+
+	.approver-name {
+		font-size: 13px;
+		font-weight: 700;
+
+		+ .tui-grid {
+			margin-top: 13px;
+		}
+	}
+
+	.per-page-box, .simple-page-nav {
+		.total-count-text {
+			display: inline-block;
+			font-size: 14px;
+			vertical-align: top;
+
+			.count {
+				font-weight: 700;
+			}
+		}
+
+	}
+
+	.per-page-box {
+		position: absolute;
+		left: 0;
+		bottom: 0;
+
+		.total-count-text {
+			line-height: 34px;
+		}
+
+		.select-box {
+			display: inline-block;
+			width: 120px;
+			margin-left: 18px;
+
+			.v-select {
+				font-size: 13px;
+			}
+		}
+	}
+
+	.simple-page-nav {
+		position: relative;
+		margin-top: 20px;
+
+		.total-count-text {
+			position: absolute;
+			left: 0;
+			line-height: 28px;
+		}
+	}
+
+	+ .grid-footer-box {
+		margin-top: 20px;
+	}
+
+}
+
+
+.grid-info-text, .tbl-info-text {
+	color: #006dbb;
+	font-size: 13px;
+
+	+ .grid-tool-box {
+		margin-top: 9px;
+	}
+}
+
+.grid-tool-box, .tbl-tool-box {
+	display: flex;
+	-webkit-box-pack: justify;
+	-ms-flex-pack: justify;
+	justify-content: space-between;
+	-webkit-justify-content: space-between;
+	align-items: flex-end;
+	align-content: flex-end;
+
+	> div:last-child {
+		margin-left: auto;
+	}
+	> div.left-box {
+		margin-left: 0;
+	}
+
+	.btn {
+		vertical-align: bottom;
+	}
+
+	+ .approver-name {
+		margin-top: 22px;
+	}
+
+	+ .tui-grid {
+		margin-top: 12px;
+	}
+	+ .tbl-row {
+		margin-top: 8px;
+	}
+}
+
+.grid-footer-box {
+	background: #f7f7f7;
+	padding: 13px 20px;
+
+	p {
+		font-size: 13px;
+		line-height: 26px;
+
+		a {
+			display: inline-block;
+			color: $primaryColor;
+			font-weight: 700;
+		}
+	}
+}
+
+a.tui-calendar-btn-prev-year {
+		overflow: hidden;
+		position: absolute;
+		top: 0;
+		width: 32px;
+		height: 50px;
+		line-height: 400px;
+		z-index: 10;
+	}
+	a.tui-calendar-btn-prev-month {
+			overflow: hidden;
+			position: absolute;
+			top: 0;
+			width: 32px;
+			height: 50px;
+			line-height: 400px;
+			z-index: 10;
+		}
+
+a.tui-calendar-btn-next-year{
+	overflow: hidden;
+    position: absolute;
+    top: 0;
+    width: 32px;
+    height: 50px;
+    line-height: 400px;
+    z-index: 10;
+}
+
+a.tui-calendar-btn-next-month{
+	overflow: hidden;
+    position: absolute;
+    top: 0;
+    width: 32px;
+    height: 50px;
+    line-height: 400px;
+    z-index: 10;
+}

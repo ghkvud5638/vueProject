@@ -18,11 +18,16 @@ export default {
   },
   mounted() {
   },
+
+  computed:{
+  },
+
   methods:{
     reload(){
       this.$router.push("/");
       this.$router.go(0);
     },
+
   }
 };
 </script>

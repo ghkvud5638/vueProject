@@ -1,0 +1,50 @@
+
+&.app-wrap {
+	min-height: 100vh;
+
+	&:not(.mobile) {
+		min-width: 1280px;
+		background: #f1f1f1;
+		padding-bottom: 30px;
+
+		.main-wrap {
+
+			.contents-wrap {
+				width: 1220px;
+				margin: 30px auto 0;
+
+				&:not(.main) {
+					padding: 30px;
+					background: #fff;
+				}
+			}
+		}
+	}
+
+	&.mobile {
+		transition: transform 0s ease-out;
+		background: #f7f7f7;
+
+		&.mobile-menu-open {
+			position: fixed;
+			width: 100vw;
+			transform: translateX(calc(100% - 63px));
+			transition: transform $transDefaultTime $transDefaultEase;
+		}
+
+		.main-wrap {
+
+			.contents-wrap {
+				margin: 15px;
+
+				&:not(.main) {
+					background: #fff;
+					padding: 20px 15px;
+				}
+			}
+		}
+	}
+}
+
+@import 'UINavbar';
+@import 'UIContents';

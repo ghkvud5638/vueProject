@@ -20,6 +20,14 @@ public interface MemberRepository extends JpaRepository<Member, Long>{
 	@Modifying
 	@Query("UPDATE Member m set m.refreshToken = :refreshToken where m.seq = :seq ")
 	void updateRefreshToken(Long seq, String refreshToken);
+
+	@Query("select m from Member m where m.email = :email")
+	Member findByUserId(String email);
+
+	@Transactional
+	@Modifying
+	@Query("UPDATE Member m SET m.name = :name where m.email = :email ")
+	void modifyUserInfo(String email, String name);
 }
 
 

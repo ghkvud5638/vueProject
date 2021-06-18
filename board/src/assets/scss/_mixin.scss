@@ -1,0 +1,147 @@
+@import 'variables';
+@import 'functions';
+
+// ==== 기본 MIXIN ====
+
+// float하는 상위 DOM에 선언
+@mixin clearfix {
+	&:after {
+		content: '';
+		display: block;
+		width: 100%;
+		height: 0;
+		clear: both;
+	}
+}
+
+// 한줄 말줄임표
+@mixin ellipsis($autoWidth: true, $isInline: true, $clearLineHeight: true) {
+	// 멀티 라인 값 클리어
+	@include clear_multi_ellipsis;
+
+	@if ($isInline) {
+		display: inline-block;
+	}
+	@if ($autoWidth) {
+		width: 100%;
+	}
+	max-width: 100%;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	@if ($clearLineHeight) {
+		line-height: normal;
+	}
+}
+
+// n줄 말줄임표
+@mixin multi_ellipsis($line-height, $lines: 2, $useHeight: true) {
+	overflow: hidden;
+	@if $useHeight {
+		height: $line-height * $lines;
+	}
+	max-height: $line-height * $lines;
+	line-height: $line-height;
+
+	display: block;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: $lines;
+	line-clamp: $lines;
+
+	text-overflow: -o-ellipsis-lastline;
+
+	white-space: normal;
+}
+
+@mixin clear_multi_ellipsis {
+	display: inherit;
+	height: auto;
+	max-height: none;
+	-webkit-box-orient: inherit;
+	-webkit-line-clamp: inherit;
+}
+
+@mixin calc_letter_spacing($psValue, $fontSize: 1rem) {
+	$isPX: is_absolute_length($fontSize);
+	@if ($fontSize != 1rem) {
+		font-size: $fontSize;
+	}
+	@if $isPX {
+		letter-spacing: ($psValue * $fontSize / 1000);
+	} @else {
+		letter-spacing: ($psValue * convertRemToPx($fontSize) / 1000);
+	}
+}
+
+@mixin set_placeholder_color($color: rgba(255, 255, 255, .65)) {
+	&::-webkit-input-placeholder {
+		color: $color;
+	}
+
+	&:-ms-input-placeholder {
+		color: $color;
+	}
+
+	&::-ms-input-placeholder {
+		color: $color;
+	}
+
+	&::placeholder {
+		color: $color;
+	}
+
+	&:-ms-input-placeholder {
+		color: $color;
+	}
+
+	&::-ms-input-placeholder { // Microsoft Edge
+		color: $color;
+	}
+}
+
+@mixin hidden {
+	width: 0;
+	height: 0;
+	margin: 0;
+	padding: 0;
+	font-size: 0;
+	line-height: 0;
+	overflow: hidden;
+}
+
+@mixin no_select_text {
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+@mixin vertical_middle($target: before) {
+	&:#{$target} {
+		content: '';
+		display: inline-block;
+		height: 100%;
+		vertical-align: middle;
+	}
+}
+
+@mixin offscreen() {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	padding: 0;
+	margin: -1px;
+	overflow: hidden;
+	clip: rect(0, 0, 0, 0);
+	border: 0;
+	font-size: 1.2rem;
+}
+
+
+@mixin boxShadow() {
+	box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+	-webkit-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+	-moz-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+}
